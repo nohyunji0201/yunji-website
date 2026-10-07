@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yunji's Personal Website</title>
+
+  <style>
+    :root {
+      --bg: #f5f5f0;
+      --card: #ffffff;
+      --text: #171717;
+      --muted: #737373;
+      --border: #e7e7e2;
+      --accent: #171717;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+                   "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container {
+      width: min(1120px, 90%);
+      margin: auto;
+    }
+
+    /* Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(245, 245, 240, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: -0.5px;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--text);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 90px 0 65px;
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      font-size: clamp(3.2rem, 8vw, 6.5rem);
+      line-height: 0.95;
+      letter-spacing: -5px;
+      margin-bottom: 25px;
+    }
+
+    .hero-text {
+      max-width: 570px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .profile-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 18px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.06);
+      transform: rotate(2deg);
+    }
+
+.profile-card img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 20px;
+  display: block;
+}
+
+    /* Sections */
+    section {
+      padding: 75px 0;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      margin-bottom: 30px;
+      gap: 20px;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      letter-spacing: -2px;
+      line-height: 1;
+    }
+
+    .section-description {
+      color: var(--muted);
+      max-width: 450px;
+    }
+
+    /* Study cards */
+    .study-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    .study-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 25px;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-decoration: none;
+      color: var(--text);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .study-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+    }
+
+    .number {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .study-card h3 {
+      font-size: 1.15rem;
+    }
+
+    .arrow {
+      align-self: end;
+      font-size: 1.3rem;
+    }
+
+    /* Favorite places */
+    .places-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 15px;
+    }
+
+    .place {
+      min-height: 250px;
+      border-radius: 22px;
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      background: #deded8;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .place:first-child {
+      min-height: 320px;
+    }
+
+    .place::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(transparent 40%, rgba(0,0,0,0.45));
+    }
+
+    .place-content {
+      position: relative;
+      z-index: 1;
+      color: white;
+    }
+
+    .place h3 {
+      font-size: 1.5rem;
+      margin-bottom: 3px;
+    }
+
+    .place p {
+      font-size: 0.85rem;
+      opacity: 0.85;
+    }
+
+    /* Info */
+    .about {
+      background: var(--card);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .about-text {
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .info-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .info-item {
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .info-item span {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    /* Footer */
+    footer {
+      padding: 45px 0;
+      color: var(--muted);
+      font-size: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    @media (max-width: 850px) {
+      .hero,
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-card {
+        max-width: 400px;
+      }
+
+      .study-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .places-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 550px) {
+      nav ul {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 60px;
+      }
+
+      h1 {
+        letter-spacing: -3px;
+      }
+
+      .study-grid,
+      .places-grid,
+      .info-list {
+        grid-template-columns: 1fr;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="container nav-inner">
+      <div class="logo">YUNJI.</div>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#study">Study Guides</a></li>
+        <li><a href="#places">Favorite Places</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- Hero / Banner -->
+    <div class="container">
+      <section class="hero">
+        <div>
+          <div class="eyebrow">Welcome to my page!</div>
+          <h1>Hi, I'm<br>Yunji.</h1>
+          <p class="hero-text">
+            A little space about me, what I study, and the places I enjoy.
+            Explore my study guides and learn more about my interests.
+          </p>
+        </div>
+
+        <div class="profile-card">
+         
+               <img src="cover-page.jpg" alt="Yunji">
+        </div>
+      </section>
+    </div>
+
+    <!-- My Info -->
+    <section class="about" id="about">
+      <div class="container about-grid">
+        <div>
+          <div class="eyebrow">01 — My Info</div>
+          <h2>A little<br>about me.</h2>
+        </div>
+
+        <div>
+          <p class="about-text">
+            Hello! I'm Yunji. This website is a place where I can share
+            some information about myself, my school subjects, and the
+            places I like to visit.
+          </p>
+
+          <div class="info-list" style="margin-top: 30px;">
+            <div class="info-item">
+              <span>School</span>
+              High School
+            </div>
+            <div class="info-item">
+              <span>Interests</span>
+              Music & Travel
+            </div>
+            <div class="info-item">
+              <span>Favorite Subject</span>
+              Science
+            </div>
+            <div class="info-item">
+              <span>Goal</span>
+              Keep Learning
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Study Guides -->
+    <section id="study">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">02 — School</div>
+            <h2>Study Guides</h2>
+          </div>
+          <p class="section-description">
+            Quick links to notes and resources for my classes.
+          </p>
+        </div>
+
+        <div class="study-grid">
+          <a class="study-card" href="#">
+            <span class="number">01</span>
+            <h3>English</h3>
+            <span class="arrow">↗</span>
+          </a>
+
+          <a class="study-card" href="#">
+            <span class="number">02</span>
+            <h3>Chemistry</h3>
+            <span class="arrow">↗</span>
+          </a>
+
+          <a class="study-card" href="#">
+            <span class="number">03</span>
+            <h3>Math</h3>
+            <span class="arrow">↗</span>
+          </a>
+
+          <a class="study-card" href="#">
+            <span class="number">04</span>
+            <h3>U.S. History</h3>
+            <span class="arrow">↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Favorite Places -->
+    <section id="places">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">03 — Explore</div>
+            <h2>Favorite Places</h2>
+          </div>
+        </div>
+
+        <div class="places-grid">
+          <div class="place">
+            <div class="place-content">
+              <h3>The Beach</h3>
+              <p>A place to relax and enjoy the water.</p>
+            </div>
+          </div>
+
+          <div class="place">
+            <div class="place-content">
+              <h3>New York City</h3>
+              <p>Food, shopping, and city life.</p>
+            </div>
+          </div>
+
+          <div class="place">
+            <div class="place-content">
+              <h3>Travel</h3>
+              <p>New places and new experiences.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="container">
+    <span>© 2026 Yunji Noh</span>
+    <span>Made with HTML & CSS</span>
+  </footer>
+
+</body>
+</html>
